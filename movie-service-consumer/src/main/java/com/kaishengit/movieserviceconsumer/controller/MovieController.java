@@ -2,6 +2,7 @@ package com.kaishengit.movieserviceconsumer.controller;
 
 import com.kaishengit.movieserviceconsumer.client.MovieClient;
 import com.kaishengit.movieserviceconsumer.pojo.Movie;
+import com.kaishengit.movieserviceconsumer.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class MovieController {
+
+    @Autowired
+    private MovieService movieService;
 
 
     //feign实现
@@ -40,7 +44,10 @@ public class MovieController {
         return restTemplate.getForObject(url, Movie.class);*/
 
         //feign实现效果
-        return movieClient.findById(id);
+        //return movieClient.findById(id);
+
+        //hystrix实现
+        return movieService.findById(id);
     }
 
     @PostMapping("/movie/new")
