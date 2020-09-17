@@ -19,13 +19,15 @@
     </properties>
 
     <modules>
-        <module>api-gateway</module>
+        <module>api-gateway 7000</module>
         <module>cloud-config-server 11000</module>
-        <module>eureka-server 9001-9002</module>
+        <module>eureka-server 9091</module>
+        <module>eureka-server 9092</module>
+        <module>eureka-server 9093</module>
         <module>hystrix-dashboard 10000</module>
-        <module>movie-service-consumer</module>
-        <module>movie-service-provider</module>
-        <module>order-service-provider</module>
+        <module>movie-service-consumer 9093</module>
+        <module>movie-service-provider 8080</module>
+        <module>order-service-provider 8100</module>
     </modules>
     <dependencies>
         <dependency>
