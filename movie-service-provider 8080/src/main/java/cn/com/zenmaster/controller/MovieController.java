@@ -38,8 +38,9 @@ public class MovieController {
     }
 
     @DeleteMapping("/list")
-    public boolean delete(@RequestBody Movie movie) {
-        return movieService.list(movie);
+    public boolean list(@RequestBody Movie movie) {
+//        return movieService.list(movie);
+        return false;
     }
 
 }

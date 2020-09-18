@@ -1,29 +1,34 @@
 package cn.com.zenmaster.entity.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class Movie implements Serializable {
 
-    private Integer id;
+    @Id
+    private Long id;
     private String name;
     private String actor;
 
     public Movie() {
     }
 
-    public Movie(Integer id, String name, String actor) {
+    public Movie(Long id, String name, String actor) {
         this.id = id;
         this.name = name;
         this.actor = actor;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
