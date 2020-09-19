@@ -1,10 +1,12 @@
 package cn.com.zenmaster.controller;
 
 import cn.com.zenmaster.entity.po.Movie;
+import cn.com.zenmaster.entity.vo.MoviePageVo;
 import cn.com.zenmaster.service.MovieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,13 +22,13 @@ public class MovieController {
         return movieService.getById(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/movie/save")
     public Movie save(@RequestBody Movie movie) {
         log.info("save movie{}", movie);
         return movieService.save(movie);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/movie/update")
     public Movie update(@RequestBody Movie movie) {
         log.info("update movie{}", movie);
         return movieService.save(movie);
@@ -37,10 +39,10 @@ public class MovieController {
         return movieService.delete(id);
     }
 
-    @DeleteMapping("/list")
-    public boolean list(@RequestBody Movie movie) {
-//        return movieService.list(movie);
-        return false;
+    @PostMapping("/movie/list")
+    public Page<Movie> list(@RequestBody MoviePageVo pageVo) {
+        return movieService.page(pageVo);
+
     }
 
 }
