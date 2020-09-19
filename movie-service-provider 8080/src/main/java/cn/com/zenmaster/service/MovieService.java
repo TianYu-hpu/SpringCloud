@@ -3,17 +3,21 @@ package cn.com.zenmaster.service;
 import cn.com.zenmaster.entity.po.Movie;
 import cn.com.zenmaster.entity.vo.MoviePageVo;
 import cn.com.zenmaster.repository.MovieRepository;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MovieService {
@@ -42,6 +46,10 @@ public class MovieService {
 
     public Page<Movie> page(MoviePageVo pageVo) {
         Pageable page = PageRequest.of(pageVo.getPageNum(), pageVo.getPageSize());
-        return movieRepository.findAll(page);
+        Movie movie = new Movie();
+        movie.setActor(pageVo.getActor());
+        movie.setName(pageVo.getName());
+        Example<Movie> example = Example.of(movie);
+        return movieRepository.findAll(example, page);
     }
 }
