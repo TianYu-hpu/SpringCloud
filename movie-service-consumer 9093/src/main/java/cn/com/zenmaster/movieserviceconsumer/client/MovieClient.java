@@ -3,10 +3,7 @@ package cn.com.zenmaster.movieserviceconsumer.client;
 import cn.com.zenmaster.movieserviceconsumer.pojo.Movie;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "MOVIE-SERVICE-PROVIDER")
 @Component
@@ -15,7 +12,7 @@ public interface MovieClient {
     @GetMapping("/movie/{id}")
     Movie findById(@PathVariable(name = "id") Integer id);
 
-    @PostMapping("/movie/new")
-    String save(@RequestParam(name = "name") String name, @RequestParam(name = "actor") String actor);
+    @PostMapping("/movie/save")
+    String save(@RequestBody Movie movie);
 
 }

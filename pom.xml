@@ -19,7 +19,7 @@
     </properties>
 
     <modules>
-        <module>api-gateway 7000</module>
+        <module>zuul-gateway 7000</module>
         <module>cloud-config-server 11000</module>
         <module>eureka-server 9091</module>
         <module>eureka-server 9092</module>

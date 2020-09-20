@@ -6,10 +6,7 @@ import cn.com.zenmaster.movieserviceconsumer.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -46,9 +43,9 @@ public class MovieController {
         return movieService.findById(id);
     }
 
-    @PostMapping("/movie/new")
-    public String save(String name, String actor) {
-        return movieClient.save(name, actor);
+    @PostMapping("/movie/save")
+    public String save(@RequestBody Movie movie) {
+        return movieClient.save(movie);
     }
 
 
